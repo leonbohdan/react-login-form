@@ -1,33 +1,43 @@
 import './Login.scss';
 import { useEffect, useState } from 'react';
 
-export const Login = () => {
+export const Login = ({
+  setToRegistration, setRegistered
+}) => {
   const [choosenLogin, setChoosenLogin] = useState('');
   const [password, setPassword] = useState('');
   const [usersFromLocal, setUsersFromLocal] = useState([]);
   
   useEffect(() => {
-    let users = JSON.parse(localStorage.getItem("users"));
+    let users = JSON.parse(localStorage.getItem('users'));
     setUsersFromLocal(users);
   }, []);
 
   console.log(choosenLogin);
   console.log(password);
   console.log(usersFromLocal);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("submit");
+
+    usersFromLocal.map((user) => user.login).includes(choosenLogin)
+      ? setRegistered(true)
+      : setToRegistration(true);
+  };
   
   return (
     <>
       <h1>Sign in form</h1>
+      <h2>Choose your login and password or input new for registration</h2>
 
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="users"
           list="users"
+          required
+          placeholder="Login"
           value={choosenLogin}
           onChange={(event) => {
             setChoosenLogin(event.target.value);
@@ -41,25 +51,33 @@ export const Login = () => {
             setChoosenLogin(event.target.value);
           }}
         >
-          <option value="">Choose your login or input new one</option>
           {usersFromLocal.map((user) => (
             <option key={user.id} value={user.login}>
               {user.login}
             </option>
           ))}
         </datalist>
-        
+
         <input
           type="password"
           name="password"
           placeholder="Password"
+          required
           value={password}
           onChange={(event) => {
             setPassword(event.target.value);
           }}
         />
 
-        <button type="submit">Sign in</button>
+        {choosenLogin && password ? (
+          <button type="submit">
+            Sign in
+          </button>
+        ) : (
+          <button type="submit" disabled>
+            Sign in
+          </button>
+        )}
       </form>
     </>
   );
