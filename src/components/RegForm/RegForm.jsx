@@ -37,6 +37,7 @@ export const RegForm = () => {
   return (
     <>
       <h1>RegForm</h1>
+      <h2>Fill information to registrate you as a new member</h2>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">

@@ -8,7 +8,7 @@ import { UserPage } from './components/UserPage/UserPage';
 function App() {
   const [users, setUsers] = useState(usersBase);
   const [toRegistration, setToRegistration] = useState(false);
-  const [registered, setRegistered] = useState(false);
+  const [registered, setRegistered] = useState(true);
 
   console.log(toRegistration, registered);
 

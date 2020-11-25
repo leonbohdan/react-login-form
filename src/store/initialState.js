@@ -1,3 +1,7 @@
+import { RegForm } from '../components/RegForm/RegForm';
+import { AllUsers } from '../components/AllUsers/AllUsers';
+import { TextField } from '../components/TextField/TextField';
+
 export const usersBase = [
   {
     id: 1,
@@ -32,4 +36,22 @@ export const usersBase = [
     login: "mtop",
     password: 4321,
   }
+];
+
+export const initialTabs = [
+  {
+    id: 1,
+    title: "Change user information",
+    content: <RegForm />,
+  },
+  {
+    id: 2,
+    title: "Show all users",
+    content: <AllUsers />,
+  },
+  {
+    id: 3,
+    title: "Add text",
+    content: <TextField />,
+  },
 ];

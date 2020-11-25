@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 export const Login = ({
   setToRegistration, setRegistered
 }) => {
+  const [missPassword, setMissPassword] = useState(false);
   const [choosenLogin, setChoosenLogin] = useState('');
   const [password, setPassword] = useState('');
   const [usersFromLocal, setUsersFromLocal] = useState([]);
@@ -20,6 +21,20 @@ export const Login = ({
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("submit");
+
+    console.log(usersFromLocal.map((user) => user.login).includes(choosenLogin));
+
+    if (!usersFromLocal.map((user) => user.login).includes(choosenLogin)) {
+      setToRegistration(true);
+      return;
+    }
+
+    if (usersFromLocal.find(
+      user => (user.login === choosenLogin)
+    ).password + '' !== password) {
+      setMissPassword(true);
+      return;
+    }
 
     usersFromLocal.map((user) => user.login).includes(choosenLogin)
       ? setRegistered(true)
@@ -69,10 +84,12 @@ export const Login = ({
           }}
         />
 
+        {missPassword ? (
+          <span>Check your password</span>
+        ) : ('')}
+
         {choosenLogin && password ? (
-          <button type="submit">
-            Sign in
-          </button>
+          <button type="submit">Sign in</button>
         ) : (
           <button type="submit" disabled>
             Sign in
