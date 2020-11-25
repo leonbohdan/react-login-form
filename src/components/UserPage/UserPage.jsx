@@ -1,15 +1,33 @@
 import './UserPage.scss';
 import 'bulma';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CN from 'classnames';
-import { initialTabs } from '../../store/initialState';
+// import { initialTabs } from '../../store/initialState';
+import { EditForm } from '../EditForm/EditForm';
+import { AllUsers } from '../AllUsers/AllUsers';
+import { TextField } from '../TextField/TextField';
 
+export const UserPage = ({ choosenUser }) => {
+  const initialTabs = [
+    {
+      id: 1,
+      title: "Change user information",
+      content: <EditForm choosenUser={choosenUser} />,
+    },
+    {
+      id: 2,
+      title: "Show all users",
+      content: <AllUsers />,
+    },
+    {
+      id: 3,
+      title: "Add text",
+      content: <TextField />,
+    },
+  ];
 
-export const UserPage = () => {
   const [tabs, setTabs] = useState(initialTabs);
   const [id, setId] = useState(0);
-
-  console.log(tabs);
 
   return (
     <>
@@ -46,9 +64,7 @@ export const UserPage = () => {
           ))}
         </div>
 
-        <article className="section__message">
-          {tabs[id].content}
-        </article>
+        <article className="section__message">{tabs[id].content}</article>
       </section>
     </>
   );

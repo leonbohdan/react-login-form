@@ -5,8 +5,6 @@ import { useEffect, useState } from 'react';
 export const AllUsers = () => {
   const [usersFromLocal, setUsersFromLocal] = useState([]);
 
-  console.log(usersFromLocal);
-
   useEffect(() => {
     let users = JSON.parse(localStorage.getItem("users"));
     setUsersFromLocal(users);
@@ -37,18 +35,6 @@ export const AllUsers = () => {
           </div>
         ))}
       </section>
-
-      <div className="card">
-        <header className="card-header">
-          <p className="card-header-title">Component</p>
-        </header>
-
-        <div className="card-content">
-          <div className="content">Content</div>
-        </div>
-
-        <footer className="card-footer">Footer</footer>
-      </div>
     </>
   );
 }

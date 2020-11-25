@@ -8,14 +8,14 @@ import { UserPage } from './components/UserPage/UserPage';
 function App() {
   const [users, setUsers] = useState(usersBase);
   const [toRegistration, setToRegistration] = useState(false);
-  const [registered, setRegistered] = useState(true);
-
-  console.log(toRegistration, registered);
+  const [registered, setRegistered] = useState(false);
+  const [choosenUser, setChoosenUser] = useState(0);
 
   useEffect(() => {
     if (localStorage.getItem('users') !== null) {
       return;
     }
+
     localStorage.setItem('users', JSON.stringify(users));
   }, [users]);
 
@@ -27,12 +27,15 @@ function App() {
         (<Login
           setToRegistration={setToRegistration}
           setRegistered={setRegistered}
+          setChoosenUser={setChoosenUser}
         />)
       }
 
       {toRegistration ? (<RegForm />) : ('')}
       
-      {registered ? (<UserPage />) : ('')}
+      {registered ? (
+        <UserPage choosenUser={choosenUser} />
+      ) : ('')}
     </div>
   );
 }

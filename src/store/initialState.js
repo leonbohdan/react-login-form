@@ -1,4 +1,4 @@
-import { RegForm } from '../components/RegForm/RegForm';
+import { EditForm } from '../components/EditForm/EditForm';
 import { AllUsers } from '../components/AllUsers/AllUsers';
 import { TextField } from '../components/TextField/TextField';
 
@@ -38,20 +38,20 @@ export const usersBase = [
   }
 ];
 
-export const initialTabs = [
-  {
-    id: 1,
-    title: "Change user information",
-    content: <RegForm />,
-  },
-  {
-    id: 2,
-    title: "Show all users",
-    content: <AllUsers />,
-  },
-  {
-    id: 3,
-    title: "Add text",
-    content: <TextField />,
-  },
-];
+// export const initialTabs = [
+//   {
+//     id: 1,
+//     title: "Change user information",
+//     content: <EditForm choosenUser={choosenUser} />,
+//   },
+//   {
+//     id: 2,
+//     title: "Show all users",
+//     content: <AllUsers />,
+//   },
+//   {
+//     id: 3,
+//     title: "Add text",
+//     content: <TextField />,
+//   },
+// ];

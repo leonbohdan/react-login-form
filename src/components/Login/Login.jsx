@@ -2,7 +2,9 @@ import './Login.scss';
 import { useEffect, useState } from 'react';
 
 export const Login = ({
-  setToRegistration, setRegistered
+  setToRegistration,
+  setRegistered,
+  setChoosenUser
 }) => {
   const [missPassword, setMissPassword] = useState(false);
   const [choosenLogin, setChoosenLogin] = useState('');
@@ -14,20 +16,15 @@ export const Login = ({
     setUsersFromLocal(users);
   }, []);
 
-  console.log(choosenLogin);
-  console.log(password);
-  console.log(usersFromLocal);
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("submit");
-
-    console.log(usersFromLocal.map((user) => user.login).includes(choosenLogin));
 
     if (!usersFromLocal.map((user) => user.login).includes(choosenLogin)) {
       setToRegistration(true);
       return;
     }
+
+    setChoosenUser(choosenLogin);
 
     if (usersFromLocal.find(
       user => (user.login === choosenLogin)
