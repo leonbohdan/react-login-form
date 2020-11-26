@@ -1,1 +1,9 @@
 @import '../../styles/utils';
+
+.userPage {
+
+  &__heading {
+    @include heading;
+    padding-bottom: 40px;
+  }
+}

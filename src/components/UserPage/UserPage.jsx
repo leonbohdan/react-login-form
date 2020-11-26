@@ -2,7 +2,6 @@ import './UserPage.scss';
 import 'bulma';
 import { useState } from 'react';
 import CN from 'classnames';
-// import { initialTabs } from '../../store/initialState';
 import { EditForm } from '../EditForm/EditForm';
 import { AllUsers } from '../AllUsers/AllUsers';
 import { TextField } from '../TextField/TextField';
@@ -31,40 +30,29 @@ export const UserPage = ({ choosenUser }) => {
 
   return (
     <>
-      <h1>UserPage</h1>
-      {/* <div className="tabs">
-        <ul>
-          <li className="is-active">
-            <a>Change user information</a>
-          </li>
-          <li>
-            <a>Show all users</a>
-          </li>
-          <li>
-            <a>Add text</a>
-          </li>
-        </ul>
-      </div> */}
+      <section className="userPage">
+        <h1 className="userPage__heading">UserPage</h1>
 
-      <section className="section">
-        <div className="section__buttons">
-          {tabs.map((tab, i) => (
-            <button
-              type="button"
-              key={tab.id}
-              className={CN("section__button", {
-                "section__button--tab": tab.id === i,
-              })}
-              onClick={() => {
-                setId(i);
-              }}
-            >
-              {tab.title}
-            </button>
-          ))}
+        <div className="userPage__buttons tabs is-centered">
+          <ul className="userPage__list">
+            {tabs.map((tab, i) => (
+              <li
+                type="button"
+                key={tab.id}
+                className={CN("userPage__button", {
+                  "is-active": tab.id === id + 1,
+                })}
+                onClick={() => {
+                  setId(i);
+                }}
+              >
+                <a className="userPage__name" href=" #">{tab.title}</a>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <article className="section__message">{tabs[id].content}</article>
+        <article className="userPage__message">{tabs[id].content}</article>
       </section>
     </>
   );

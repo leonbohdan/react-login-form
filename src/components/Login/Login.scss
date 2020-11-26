@@ -1,1 +1,26 @@
 @import '../../styles/utils';
+
+.login {
+
+  &__heading {
+    @include heading;
+  }
+
+  &__form {
+    display: flex;
+    width: 600px;
+    margin: 50px auto;
+  }
+
+  &__input {
+    margin: 0 10px;
+  }
+
+  &__button {
+    margin: 0 10px;
+  }
+
+  &__wrongPassword {
+    color: $wrong-pass-color;
+  }
+}

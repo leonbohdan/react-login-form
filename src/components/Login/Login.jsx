@@ -1,4 +1,5 @@
 import './Login.scss';
+import 'bulma';
 import { useEffect, useState } from 'react';
 import { usersBase } from '../../store/initialState';
 
@@ -40,12 +41,18 @@ export const Login = ({
   };
   
   return (
-    <>
-      <h1>Sign in form</h1>
-      <h2>Choose your login and password or input new for registration</h2>
+    <div className="login">
+      <h1 className="login__heading">Sign in form</h1>
+      <h2 className="login__description">
+        Choose your login and password or input new for registration
+      </h2>
 
-      <form onSubmit={handleSubmit}>
+      <form
+        className="login__form form"
+        onSubmit={handleSubmit}
+      >
         <input
+          className="login__input input"
           type="text"
           name="users"
           list="users"
@@ -57,6 +64,7 @@ export const Login = ({
           }}
         />
         <datalist
+          className="login__datalist"
           id="users"
           name="users"
           value={choosenLogin}
@@ -72,6 +80,7 @@ export const Login = ({
         </datalist>
 
         <input
+          className="login__input input"
           type="password"
           name="password"
           placeholder="Password"
@@ -82,18 +91,24 @@ export const Login = ({
           }}
         />
 
-        {missPassword ? (
-          <span>Check your password</span>
-        ) : ('')}
+        {missPassword && (
+          <span
+            className="login__wrongPassword"
+          >
+            Check your password
+          </span>
+        )}
 
         {choosenLogin && password ? (
-          <button type="submit">Sign in</button>
+          <button className="login__button button" type="submit">
+            Sign in
+          </button>
         ) : (
-          <button type="submit" disabled>
+          <button className="login__button button" type="submit" disabled>
             Sign in
           </button>
         )}
       </form>
-    </>
+    </div>
   );
 }

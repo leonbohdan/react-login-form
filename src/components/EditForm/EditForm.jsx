@@ -1,4 +1,4 @@
-import './EditForm';
+import './EditForm.scss';
 import 'bulma';
 import { useEffect, useState } from 'react';
 
@@ -7,39 +7,10 @@ export const EditForm = ({ choosenUser }) => {
   const [localState, setLocalState] = useState(
     JSON.parse(localStorage.getItem('users')) || ''
   );
-  const [newUser, setNewUser] = useState({
-    id: new Date().getTime(),
-    isActive: false,
-    name: "",
-    lastname: "",
-    position: "",
-    phone: "",
-    registered: new Date(),
-    login: "",
-    password: "",
-  });
 
   const [choosenMember, setChoosenMember] = useState(
     localState.find((user) => user.login === choosenUser),
   );
-
-  console.log(choosenMember);
-  console.log(localState);
-
-  // const updateName = (name) => {
-  //   setLocalState(
-  //     localState.map(user => {
-  //       if (user.login !== choosenUser) {
-  //         return user;
-  //       }
-
-  //       return {
-  //         ...user,
-  //         name: name,
-  //       }
-  //     })
-  //   )
-  // }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -57,18 +28,27 @@ export const EditForm = ({ choosenUser }) => {
   }, [localState]);
 
   return (
-    <>
-      <h1>Edit Form</h1>
-      <h2>Here you can edit your information</h2>
+    <div className="edit">
+      <h1 className="edit__heading">Edit Form</h1>
+      <h2 className="edit__description">
+        Here you can edit your information
+      </h2>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">
+      <form
+        className="edit__form form"
+        onSubmit={handleSubmit}
+      >
+        <label
+          htmlFor="name control"
+          className="edit__label label"
+        >
           Name
           <input
             type="text"
             id="name"
             placeholder="Name"
             required
+            className="edit__input input"
             value={choosenMember.name}
             onChange={(event) => {
               setChoosenMember({
@@ -79,13 +59,17 @@ export const EditForm = ({ choosenUser }) => {
           />
         </label>
 
-        <label htmlFor="lastname">
+        <label
+          htmlFor="lastname"
+          className="edit__label label"
+        >
           Lastname
           <input
             type="text"
             id="lastname"
             placeholder="Lastname"
             required
+            className="edit__input input"
             value={choosenMember.lastname}
             onChange={(event) => {
               setChoosenMember({
@@ -96,13 +80,17 @@ export const EditForm = ({ choosenUser }) => {
           />
         </label>
 
-        <label htmlFor="position">
+        <label
+          htmlFor="position"
+          className="edit__label label"
+        >
           Position
           <input
             type="text"
             id="position"
             placeholder="Posititon"
             required
+            className="edit__input input"
             value={choosenMember.position}
             onChange={(event) => {
               setChoosenMember({
@@ -113,13 +101,17 @@ export const EditForm = ({ choosenUser }) => {
           />
         </label>
 
-        <label htmlFor="phone">
+        <label
+          htmlFor="phone"
+          className="edit__label label"
+        >
           Phone
           <input
             type="text"
             id="phone"
             placeholder="Phone"
             required
+            className="edit__input input"
             pattern="[0-9]{10}"
             value={choosenMember.phone}
             onChange={(event) => {
@@ -131,13 +123,17 @@ export const EditForm = ({ choosenUser }) => {
           />
         </label>
 
-        <label htmlFor="login">
+        <label
+          htmlFor="login"
+          className="edit__label label"
+        >
           Login
           <input
             type="text"
             id="login"
             placeholder="Login"
             required
+            className="edit__input input"
             value={choosenMember.login}
             onChange={(event) => {
               setChoosenMember({
@@ -148,13 +144,17 @@ export const EditForm = ({ choosenUser }) => {
           />
         </label>
 
-        <label htmlFor="password1">
+        <label
+          htmlFor="password1"
+          className="edit__label label"
+        >
           New Password
           <input
             type="password"
             id="password1"
             placeholder="Password"
             required
+            className="edit__input input"
             value={password}
             onChange={(event) => {
               setPassword(event.target.value);
@@ -162,13 +162,17 @@ export const EditForm = ({ choosenUser }) => {
           />
         </label>
 
-        <label htmlFor="password2">
+        <label
+          htmlFor="password2"
+          className="edit__label label"
+        >
           Repeat New Password
           <input
             type="password"
             id="password2"
             placeholder="Repeat Password"
             required
+            className="edit__input input"
             value={choosenMember.password}
             onChange={(event) => {
               setChoosenMember({
@@ -179,9 +183,21 @@ export const EditForm = ({ choosenUser }) => {
           />
         </label>
 
-        {password !== choosenMember.password ? "Passwords are not equal" : ""}
-        <button type="submit">Save changes</button>
+        {password !== choosenMember.password ?
+          <span
+            className="edit__wrongPass"
+          >
+            Passwords are not equal
+          </span>
+          : ""}
+
+        <button
+          type="submit"
+          className="edit__button button is-primary"
+        >
+          Save changes
+        </button>
       </form>
-    </>
+    </div>
   );
 };

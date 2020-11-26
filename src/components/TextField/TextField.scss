@@ -1,0 +1,25 @@
+@import '../../styles/utils';
+
+.textfield {
+  &__heading {
+    margin: 10px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__label {
+    width: 400px;
+  }
+
+  &__button {
+    width: 400px;
+  }
+
+  &__empty {
+    color: $wrong-pass-color;
+  }
+}

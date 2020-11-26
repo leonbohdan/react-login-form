@@ -1,4 +1,5 @@
 import './TextField.scss';
+import 'bulma';
 import { useState } from 'react';
 
 export const TextField = () => {
@@ -22,16 +23,21 @@ export const TextField = () => {
 
   return (
     <div className="textfield">
-      <h1 className="textfield__heading">Text Field</h1>
+      <h1 className="textfield__heading">
+        Save some text
+      </h1>
 
       <form
-        className="textfield__container"
+        className="textfield__container form"
         onSubmit={handleSubmit}
       >
-        <label htmlFor="input">
+        <label
+          htmlFor="input"
+          className="textfield__label label"
+        >
           Input
           <textarea
-            className="textfield__text"
+            className="textfield__text textarea"
             id="input"
             value={query}
             onChange={(event) => {
@@ -40,10 +46,13 @@ export const TextField = () => {
           />
         </label>
 
-        <label htmlFor="output">
+        <label
+          htmlFor="output"
+          className="textfield__label label"
+        >
           Output
           <textarea
-            className="textfield__text"
+            className="textfield__text textarea"
             id="output"
             value={comment}
             onChange={(event) => {
@@ -53,15 +62,19 @@ export const TextField = () => {
         </label>
 
         <button
-          className="textfield__text"
+          className="textfield__button button is-primary"
           type="submit"
         >
-          Add text
+          Save text
         </button>
       </form>
 
       {empty ? (
-        <span>Type the text to input field</span>
+        <span
+          className="textfield__empty"
+        >
+          Type the text to input field
+        </span>
       ) : ('')}
     </div>
   );

@@ -4,3 +4,9 @@
     #{$_property}: $_toValue;
   }
 }
+
+@mixin heading {
+  font-size: 30px;
+  font-weight: 700;
+  padding: 10px 0;
+}

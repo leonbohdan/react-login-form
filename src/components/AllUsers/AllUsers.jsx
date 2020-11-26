@@ -11,12 +11,10 @@ export const AllUsers = () => {
   }, []);
 
   return (
-    <>
-      <h1>All users</h1>
-
-      <section className="section">
+    <div className="allUsers">
+      <section className="allUsers__section">
         {usersFromLocal.map((user) => (
-          <div className="card" key={user.id}>
+          <div className="allUsers__card card" key={user.id}>
             <header className="card-header">
               <p className="card-header-title">
                 {`${user.name} ${user.lastname}`}
@@ -35,6 +33,6 @@ export const AllUsers = () => {
           </div>
         ))}
       </section>
-    </>
+    </div>
   );
 }

@@ -20,10 +20,8 @@ function App() {
   }, [users]);
 
   return (
-    <div className="App">
-      {toRegistration || registered ? (
-        ""
-      ) : (
+    <div className="App section">
+      {!(toRegistration || registered) && (
         <Login
           setToRegistration={setToRegistration}
           setRegistered={setRegistered}
@@ -31,16 +29,6 @@ function App() {
         />
       )}
 
-      {toRegistration ? (
-        <RegForm
-          setToRegistration={setToRegistration}
-          setRegistered={setRegistered}
-          setChoosenUser={setChoosenUser}
-        />
-      ) : (
-        ""
-        )}
-      
       {toRegistration && (
         <RegForm
           setToRegistration={setToRegistration}
@@ -49,7 +37,7 @@ function App() {
         />
       )}
 
-      {registered ? <UserPage choosenUser={choosenUser} /> : ""}
+      {registered && <UserPage choosenUser={choosenUser} />}
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import './RegForm.scss';
+import 'bulma';
 import { useEffect, useState } from 'react';
 
 export const RegForm = ({
@@ -22,9 +23,6 @@ export const RegForm = ({
     password: "",
   });
 
-  console.log(newUser);
-  console.log(localState);
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -45,18 +43,21 @@ export const RegForm = ({
   }, [localState]);
 
   return (
-    <>
-      <h1>RegForm</h1>
-      <h2>Fill information to registrate you as a new member</h2>
+    <div className="registration">
+      <h1 className="registration__heading">RegForm</h1>
+      <h2 className="registration__description">
+        Fill information to registrate you as a new member
+      </h2>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">
+      <form className="registration__form form" onSubmit={handleSubmit}>
+        <label htmlFor="name" className="registration__label label">
           Name
           <input
             type="text"
             id="name"
             placeholder="Name"
             required
+            className="registration__input input"
             value={newUser.name}
             onChange={(event) => {
               setNewUser({
@@ -67,13 +68,14 @@ export const RegForm = ({
           />
         </label>
 
-        <label htmlFor="lastname">
+        <label className="registration__label label" htmlFor="lastname">
           Lastname
           <input
             type="text"
             id="lastname"
             placeholder="Lastname"
             required
+            className="registration__input input"
             value={newUser.lastname}
             onChange={(event) => {
               setNewUser({
@@ -84,13 +86,14 @@ export const RegForm = ({
           />
         </label>
 
-        <label htmlFor="position">
+        <label className="registration__label label" htmlFor="position">
           Position
           <input
             type="text"
             id="position"
             placeholder="Posititon"
             required
+            className="registration__input input"
             value={newUser.position}
             onChange={(event) => {
               setNewUser({
@@ -101,13 +104,14 @@ export const RegForm = ({
           />
         </label>
 
-        <label htmlFor="phone">
+        <label className="registration__label label" htmlFor="phone">
           Phone
           <input
             type="text"
             id="phone"
             placeholder="Phone"
             required
+            className="registration__input input"
             pattern="[0-9]{10}"
             value={newUser.phone}
             onChange={(event) => {
@@ -119,13 +123,14 @@ export const RegForm = ({
           />
         </label>
 
-        <label htmlFor="login">
+        <label className="registration__label label" htmlFor="login">
           Login
           <input
             type="text"
             id="login"
             placeholder="Login"
             required
+            className="registration__input input"
             value={newUser.login}
             onChange={(event) => {
               setNewUser({
@@ -136,13 +141,14 @@ export const RegForm = ({
           />
         </label>
 
-        <label htmlFor="password1">
+        <label className="registration__label label" htmlFor="password1">
           Password
           <input
             type="password"
             id="password1"
             placeholder="Password"
             required
+            className="registration__input input"
             value={password}
             onChange={(event) => {
               setPassword(event.target.value);
@@ -150,13 +156,14 @@ export const RegForm = ({
           />
         </label>
 
-        <label htmlFor="password2">
+        <label className="registration__label label" htmlFor="password2">
           Repeat Password
           <input
             type="password"
             id="password2"
             placeholder="Repeat Password"
             required
+            className="registration__input input"
             value={newUser.password}
             onChange={(event) => {
               setNewUser({
@@ -167,9 +174,23 @@ export const RegForm = ({
           />
         </label>
 
-        {password !== newUser.password ? 'Passwords are not equal' : ''}
-        <button type="submit">Register</button>
+        {password !== newUser.password ? (
+          <span
+            className="registration__wrongPass"
+          >
+            Passwords are not equal
+          </span>
+        ) : (
+          ""
+        )}
+
+        <button
+          type="submit"
+          className="registration__button button is-primary"
+        >
+          Register
+        </button>
       </form>
-    </>
+    </div>
   );
 }
