@@ -1,5 +1,6 @@
 import './Login.scss';
 import { useEffect, useState } from 'react';
+import { usersBase } from '../../store/initialState';
 
 export const Login = ({
   setToRegistration,
@@ -9,12 +10,12 @@ export const Login = ({
   const [missPassword, setMissPassword] = useState(false);
   const [choosenLogin, setChoosenLogin] = useState('');
   const [password, setPassword] = useState('');
-  const [usersFromLocal, setUsersFromLocal] = useState([]);
+  const [usersFromLocal, setUsersFromLocal] = useState(JSON.parse(localStorage.getItem('users')) || usersBase);
   
-  useEffect(() => {
-    let users = JSON.parse(localStorage.getItem('users'));
-    setUsersFromLocal(users);
-  }, []);
+  // useEffect(() => {
+  //   let users = JSON.parse(localStorage.getItem('users'));
+  //   setUsersFromLocal(users);
+  // }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();

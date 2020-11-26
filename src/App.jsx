@@ -21,21 +21,35 @@ function App() {
 
   return (
     <div className="App">
-      {toRegistration || registered ?
-        ('')
-        :
-        (<Login
+      {toRegistration || registered ? (
+        ""
+      ) : (
+        <Login
           setToRegistration={setToRegistration}
           setRegistered={setRegistered}
           setChoosenUser={setChoosenUser}
-        />)
-      }
+        />
+      )}
 
-      {toRegistration ? (<RegForm />) : ('')}
+      {toRegistration ? (
+        <RegForm
+          setToRegistration={setToRegistration}
+          setRegistered={setRegistered}
+          setChoosenUser={setChoosenUser}
+        />
+      ) : (
+        ""
+        )}
       
-      {registered ? (
-        <UserPage choosenUser={choosenUser} />
-      ) : ('')}
+      {toRegistration && (
+        <RegForm
+          setToRegistration={setToRegistration}
+          setRegistered={setRegistered}
+          setChoosenUser={setChoosenUser}
+        />
+      )}
+
+      {registered ? <UserPage choosenUser={choosenUser} /> : ""}
     </div>
   );
 }

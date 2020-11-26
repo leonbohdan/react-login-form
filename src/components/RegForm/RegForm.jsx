@@ -1,7 +1,11 @@
 import './RegForm.scss';
 import { useEffect, useState } from 'react';
 
-export const RegForm = () => {
+export const RegForm = ({
+  setToRegistration,
+  setRegistered,
+  setChoosenUser
+}) => {
   const [password, setPassword] = useState('');
   const [localState, setLocalState] = useState(
     JSON.parse(localStorage.getItem('users')) || ''
@@ -28,6 +32,12 @@ export const RegForm = () => {
       ...localState,
       newUser,
     ]);
+
+    setTimeout(() => {
+      setChoosenUser(newUser.login);
+      setToRegistration(false);
+      setRegistered(true);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -98,7 +108,7 @@ export const RegForm = () => {
             id="phone"
             placeholder="Phone"
             required
-            pattern="[0-9]{3}"
+            pattern="[0-9]{10}"
             value={newUser.phone}
             onChange={(event) => {
               setNewUser({

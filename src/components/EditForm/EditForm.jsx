@@ -26,12 +26,29 @@ export const EditForm = ({ choosenUser }) => {
   console.log(choosenMember);
   console.log(localState);
 
+  // const updateName = (name) => {
+  //   setLocalState(
+  //     localState.map(user => {
+  //       if (user.login !== choosenUser) {
+  //         return user;
+  //       }
+
+  //       return {
+  //         ...user,
+  //         name: name,
+  //       }
+  //     })
+  //   )
+  // }
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     setLocalState([
-      ...localState,
-      newUser,
+      ...localState.filter(user => (
+        user.login !== choosenUser
+      )),
+      choosenMember,
     ]);
   };
 
@@ -54,8 +71,8 @@ export const EditForm = ({ choosenUser }) => {
             required
             value={choosenMember.name}
             onChange={(event) => {
-              setNewUser({
-                ...newUser,
+              setChoosenMember({
+                ...choosenMember,
                 name: event.target.value,
               });
             }}
@@ -71,8 +88,8 @@ export const EditForm = ({ choosenUser }) => {
             required
             value={choosenMember.lastname}
             onChange={(event) => {
-              setNewUser({
-                ...newUser,
+              setChoosenMember({
+                ...choosenMember,
                 lastname: event.target.value,
               });
             }}
@@ -88,8 +105,8 @@ export const EditForm = ({ choosenUser }) => {
             required
             value={choosenMember.position}
             onChange={(event) => {
-              setNewUser({
-                ...newUser,
+              setChoosenMember({
+                ...choosenMember,
                 position: event.target.value,
               });
             }}
@@ -103,11 +120,11 @@ export const EditForm = ({ choosenUser }) => {
             id="phone"
             placeholder="Phone"
             required
-            pattern="[0-9]{3}"
+            pattern="[0-9]{10}"
             value={choosenMember.phone}
             onChange={(event) => {
-              setNewUser({
-                ...newUser,
+              setChoosenMember({
+                ...choosenMember,
                 phone: event.target.value,
               });
             }}
@@ -123,8 +140,8 @@ export const EditForm = ({ choosenUser }) => {
             required
             value={choosenMember.login}
             onChange={(event) => {
-              setNewUser({
-                ...newUser,
+              setChoosenMember({
+                ...choosenMember,
                 login: event.target.value,
               });
             }}
@@ -154,8 +171,8 @@ export const EditForm = ({ choosenUser }) => {
             required
             value={choosenMember.password}
             onChange={(event) => {
-              setNewUser({
-                ...newUser,
+              setChoosenMember({
+                ...choosenMember,
                 password: event.target.value,
               });
             }}
@@ -163,7 +180,7 @@ export const EditForm = ({ choosenUser }) => {
         </label>
 
         {password !== choosenMember.password ? "Passwords are not equal" : ""}
-        <button type="submit">Register</button>
+        <button type="submit">Save changes</button>
       </form>
     </>
   );
