@@ -9,7 +9,7 @@ export const EditForm = ({ choosenUser }) => {
   );
 
   const [choosenMember, setChoosenMember] = useState(
-    localState.find((user) => user.login === choosenUser),
+    localState.find((user) => user.id === choosenUser),
   );
 
   const handleSubmit = (event) => {
@@ -17,7 +17,7 @@ export const EditForm = ({ choosenUser }) => {
 
     setLocalState([
       ...localState.filter(user => (
-        user.login !== choosenUser
+        user.id !== choosenUser
       )),
       choosenMember,
     ]);
@@ -47,6 +47,8 @@ export const EditForm = ({ choosenUser }) => {
             type="text"
             id="name"
             placeholder="Name"
+            pattern="[A-Za-z]{3,12}"
+            title="Name must be between 3 and 12 characters in length and contain only letters"
             required
             className="edit__input input"
             value={choosenMember.name}
@@ -68,6 +70,8 @@ export const EditForm = ({ choosenUser }) => {
             type="text"
             id="lastname"
             placeholder="Lastname"
+            pattern="[A-Za-z]{3,12}"
+            title="Lastname must be between 3 and 12 characters in length and contain only letters"
             required
             className="edit__input input"
             value={choosenMember.lastname}
@@ -89,6 +93,8 @@ export const EditForm = ({ choosenUser }) => {
             type="text"
             id="position"
             placeholder="Posititon"
+            pattern="[A-Za-z0-9\s]{6,20}"
+            title="Position must be between 6 and 20 characters in length and contain only letters and numbers"
             required
             className="edit__input input"
             value={choosenMember.position}
@@ -107,12 +113,13 @@ export const EditForm = ({ choosenUser }) => {
         >
           Phone
           <input
-            type="text"
+            type="tel"
             id="phone"
             placeholder="Phone"
+            pattern="[+]{1}[0-9]{12,20}"
+            title="Number must start with (+) and contain 12-20 numbers"
             required
             className="edit__input input"
-            pattern="[0-9]{10}"
             value={choosenMember.phone}
             onChange={(event) => {
               setChoosenMember({
@@ -132,6 +139,8 @@ export const EditForm = ({ choosenUser }) => {
             type="text"
             id="login"
             placeholder="Login"
+            pattern="[A-Za-z0-9]{4,12}"
+            title="Login must be between 4 and 12 characters in length and contain only letters and numbers"
             required
             className="edit__input input"
             value={choosenMember.login}
@@ -153,6 +162,8 @@ export const EditForm = ({ choosenUser }) => {
             type="password"
             id="password1"
             placeholder="Password"
+            pattern="[\d]{4,16}"
+            title="Password must be between 4 and 16 characters in length and contain only numbers"
             required
             className="edit__input input"
             value={password}
@@ -171,6 +182,8 @@ export const EditForm = ({ choosenUser }) => {
             type="password"
             id="password2"
             placeholder="Repeat Password"
+            pattern="[\d]{4,16}"
+            title="Password must be between 4 and 16 characters in length and contain only numbers"
             required
             className="edit__input input"
             value={choosenMember.password}

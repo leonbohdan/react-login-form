@@ -38,6 +38,8 @@ function App() {
       )}
 
       {registered && <UserPage choosenUser={choosenUser} />}
+
+      <div className="App__footer"></div>
     </div>
   );
 }

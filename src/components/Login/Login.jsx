@@ -1,6 +1,6 @@
 import './Login.scss';
 import 'bulma';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { usersBase } from '../../store/initialState';
 
 export const Login = ({
@@ -12,11 +12,6 @@ export const Login = ({
   const [choosenLogin, setChoosenLogin] = useState('');
   const [password, setPassword] = useState('');
   const [usersFromLocal, setUsersFromLocal] = useState(JSON.parse(localStorage.getItem('users')) || usersBase);
-  
-  // useEffect(() => {
-  //   let users = JSON.parse(localStorage.getItem('users'));
-  //   setUsersFromLocal(users);
-  // }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -24,9 +19,14 @@ export const Login = ({
     if (!usersFromLocal.map((user) => user.login).includes(choosenLogin)) {
       setToRegistration(true);
       return;
+    } else {
+      usersFromLocal.filter((user) => {
+        if (user.login === choosenLogin) {
+          setChoosenUser(user.id);
+        }
+        return -1;
+      });
     }
-
-    setChoosenUser(choosenLogin);
 
     if (usersFromLocal.find(
       user => (user.login === choosenLogin)
@@ -56,8 +56,10 @@ export const Login = ({
           type="text"
           name="users"
           list="users"
-          required
           placeholder="Login"
+          pattern="[A-Za-z0-9]{4,12}"
+          title="Login must be between 4 and 12 characters in length and contain only letters and numbers"
+          required
           value={choosenLogin}
           onChange={(event) => {
             setChoosenLogin(event.target.value);
@@ -84,6 +86,8 @@ export const Login = ({
           type="password"
           name="password"
           placeholder="Password"
+          pattern="[A-Za-z0-9]{4,12}"
+          title="Password must be between 4 and 12 characters in length and contain only letters and numbers"
           required
           value={password}
           onChange={(event) => {
@@ -91,22 +95,13 @@ export const Login = ({
           }}
         />
 
-        {missPassword && (
-          <span
-            className="login__wrongPassword"
-          >
-            Check your password
-          </span>
-        )}
 
-        {choosenLogin && password ? (
-          <button className="login__button button" type="submit">
-            Sign in
-          </button>
-        ) : (
-          <button className="login__button button" type="submit" disabled>
-            Sign in
-          </button>
+        <button className="login__button button" type="submit">
+          Sign in
+        </button>
+
+        {missPassword && (
+          <span className="login__wrongPassword">Check your password</span>
         )}
       </form>
     </div>

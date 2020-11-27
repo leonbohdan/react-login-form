@@ -26,10 +26,11 @@ export const AllUsers = () => {
               <p>{`Password: ${user.password} `}</p>
               <p>{`Position: ${user.position} `}</p>
               <p>{`Phone: ${user.phone} `}</p>
-              <div className="content">{`${user.registered}`}</div>
             </div>
 
-            <footer className="card-footer">Footer</footer>
+            <footer className="card-footer">
+              <div className="content">{`Date of registration: ${user.registered}`}</div>
+            </footer>
           </div>
         ))}
       </section>

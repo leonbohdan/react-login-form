@@ -1,14 +1,19 @@
 import './TextField.scss';
 import 'bulma';
-import { useState } from 'react';
+import { initialText } from '../../store/initialState';
+import { useEffect, useState } from 'react';
 
 export const TextField = () => {
   const [empty, setEmpty] = useState(false);
   const [query, setQuery] = useState('');
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState(initialText);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (!comment) {
+      setComment(initialText);
+    }
 
     if (!query) {
       setEmpty(true);
@@ -39,6 +44,7 @@ export const TextField = () => {
           <textarea
             className="textfield__text textarea"
             id="input"
+            placeholder="Type your text here"
             value={query}
             onChange={(event) => {
               setQuery(event.target.value);
@@ -54,6 +60,7 @@ export const TextField = () => {
           <textarea
             className="textfield__text textarea"
             id="output"
+            placeholder="Your saved text"
             value={comment}
             onChange={(event) => {
               setComment(event.target.value);

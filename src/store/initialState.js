@@ -5,8 +5,8 @@ export const usersBase = [
     name: "Petro",
     lastname: "Sheron",
     position: "Senion FE",
-    phone: 2233445566,
-    registered: "2020-05-30T11:39:51 -03:00",
+    phone: "+380678746534",
+    registered: "26-May-2020",
     login: "pits",
     password: 1234,
   },
@@ -16,8 +16,8 @@ export const usersBase = [
     name: "Mark",
     lastname: "Bool",
     position: "QA",
-    phone: 2255663344,
-    registered: "2020-01-30T11:00:51 -03:00",
+    phone: "+380673451278",
+    registered: "17-Nov-2020",
     login: "marb",
     password: 3333,
   },
@@ -27,9 +27,27 @@ export const usersBase = [
     name: "Topol",
     lastname: "Mars",
     position: "Analyst",
-    phone: 4422663355,
-    registered: "2020-04-30T13:40:51 -03:00",
+    phone: "+380673567849",
+    registered: "05-Aug-2010",
     login: "mtop",
     password: 4321,
-  }
+  },
 ];
+
+export const date = () => {
+  const d = new Date();
+
+  const ye = new Intl.DateTimeFormat("en", { year: "numeric" })
+    .format(d);
+  
+  const mo = new Intl.DateTimeFormat("en", { month: "short" })
+    .format(d);
+  
+  const da = new Intl.DateTimeFormat("en", { day: "2-digit" })
+    .format(d);
+
+  return `${da}-${mo}-${ye}`;
+}
+
+export const initialText =
+  "To abbreviate letters and number selection, there are predefined characters. They are also preceded by a backslash to distinguish them from a normal character.";

@@ -1,6 +1,9 @@
 @import '../../styles/utils';
 
 .registration {
+  // height: 100vh;
+  // background-color: $bg-color;
+
   &__heading {
     @include heading;
   }

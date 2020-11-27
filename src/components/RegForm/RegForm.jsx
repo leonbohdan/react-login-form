@@ -1,6 +1,7 @@
 import './RegForm.scss';
 import 'bulma';
 import { useEffect, useState } from 'react';
+import { date } from '../../store/initialState';
 
 export const RegForm = ({
   setToRegistration,
@@ -18,7 +19,7 @@ export const RegForm = ({
     lastname: "",
     position: "",
     phone: "",
-    registered: new Date(),
+    registered: date(),
     login: "",
     password: "",
   });
@@ -32,7 +33,7 @@ export const RegForm = ({
     ]);
 
     setTimeout(() => {
-      setChoosenUser(newUser.login);
+      setChoosenUser(newUser.id);
       setToRegistration(false);
       setRegistered(true);
     }, 1000);
@@ -56,6 +57,8 @@ export const RegForm = ({
             type="text"
             id="name"
             placeholder="Name"
+            pattern="[A-Za-z]{3,12}"
+            title="Name must be between 3 and 12 characters in length and contain only letters"
             required
             className="registration__input input"
             value={newUser.name}
@@ -74,6 +77,8 @@ export const RegForm = ({
             type="text"
             id="lastname"
             placeholder="Lastname"
+            pattern="[A-Za-z]{3,12}"
+            title="Lastname must be between 3 and 12 characters in length and contain only letters"
             required
             className="registration__input input"
             value={newUser.lastname}
@@ -92,6 +97,8 @@ export const RegForm = ({
             type="text"
             id="position"
             placeholder="Posititon"
+            pattern="[A-Za-z0-9\s]{6,20}"
+            title="Position must be between 6 and 20 characters in length and contain only letters and numbers"
             required
             className="registration__input input"
             value={newUser.position}
@@ -110,9 +117,10 @@ export const RegForm = ({
             type="text"
             id="phone"
             placeholder="Phone"
+            pattern="[+]{1}[0-9]{12,20}"
+            title="Number must start with (+) and contain 12-20 numbers"
             required
             className="registration__input input"
-            pattern="[0-9]{10}"
             value={newUser.phone}
             onChange={(event) => {
               setNewUser({
@@ -129,6 +137,8 @@ export const RegForm = ({
             type="text"
             id="login"
             placeholder="Login"
+            pattern="[A-Za-z0-9]{4,12}"
+            title="Login must be between 4 and 12 characters in length and contain only letters and numbers"
             required
             className="registration__input input"
             value={newUser.login}
@@ -147,6 +157,8 @@ export const RegForm = ({
             type="password"
             id="password1"
             placeholder="Password"
+            pattern="[\d]{4,16}"
+            title="Password must be between 4 and 16 characters in length and contain only numbers"
             required
             className="registration__input input"
             value={password}
@@ -162,6 +174,8 @@ export const RegForm = ({
             type="password"
             id="password2"
             placeholder="Repeat Password"
+            pattern="[\d]{4,16}"
+            title="Password must be between 4 and 16 characters in length and contain only numbers"
             required
             className="registration__input input"
             value={newUser.password}
@@ -175,9 +189,7 @@ export const RegForm = ({
         </label>
 
         {password !== newUser.password ? (
-          <span
-            className="registration__wrongPass"
-          >
+          <span className="registration__wrongPass">
             Passwords are not equal
           </span>
         ) : (

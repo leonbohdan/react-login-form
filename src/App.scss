@@ -3,6 +3,9 @@
 .App {
   text-align: center;
   font-family: 'Roboto', sans-serif;
-  background-color: $bg-color;
   height: 100vh;
+
+  &__footer {
+    height: 100px;
+  }
 }
