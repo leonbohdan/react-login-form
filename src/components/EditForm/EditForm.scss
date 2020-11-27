@@ -14,7 +14,7 @@
   &__form {
     display: flex;
     flex-direction: column;
-    width: 600px;
+    max-width: 600px;
     margin: 0 auto;
   }
 
@@ -26,6 +26,14 @@
 
   &__input {
     width: 400px;
+
+    @media (max-width: 660px) {
+      width: 300px;
+    }
+
+    @media (max-width: 480px) {
+      width: 200px;
+    }
   }
 
   &__wrongPass {

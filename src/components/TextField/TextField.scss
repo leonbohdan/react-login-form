@@ -13,10 +13,22 @@
 
   &__label {
     width: 400px;
+
+    @media (max-width: 450px) {
+      max-width: 300px;
+    }
+  }
+
+  &__text {
+    height: 150px;
   }
 
   &__button {
     width: 400px;
+
+    @media (max-width: 450px) {
+      max-width: 300px;
+    }
   }
 
   &__empty {

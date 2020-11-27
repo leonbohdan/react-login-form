@@ -1,9 +1,7 @@
 @import '../../styles/utils';
 
 .registration {
-  // height: 100vh;
-  // background-color: $bg-color;
-
+  
   &__heading {
     @include heading;
   }
@@ -15,8 +13,10 @@
   &__form {
     display: flex;
     flex-direction: column;
-    width: 600px;
+    max-width: 600px;
     margin: 0 auto;
+
+    @media (max-width: 660px) {}
   }
 
   &__label {
@@ -27,6 +27,14 @@
 
   &__input {
     width: 400px;
+
+    @media (max-width: 660px) {
+      width: 300px;
+    }
+
+    @media (max-width: 480px) {
+      width: 200px;
+    }
   }
 
   &__wrongPass {

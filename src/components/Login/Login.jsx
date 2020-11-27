@@ -96,7 +96,7 @@ export const Login = ({
         />
 
 
-        <button className="login__button button" type="submit">
+        <button className="login__button button is-primary" type="submit">
           Sign in
         </button>
 
