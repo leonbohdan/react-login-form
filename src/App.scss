@@ -1,3 +1,11 @@
+@import './styles/utils';
+
 .App {
   text-align: center;
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+
+  &__footer {
+    height: 100px;
+  }
 }

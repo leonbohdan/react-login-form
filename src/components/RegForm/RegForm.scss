@@ -1,0 +1,43 @@
+@import '../../styles/utils';
+
+.registration {
+  
+  &__heading {
+    @include heading;
+  }
+
+  &__description {
+    margin: 10px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+
+    @media (max-width: 660px) {}
+  }
+
+  &__label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__input {
+    width: 400px;
+
+    @media (max-width: 660px) {
+      width: 300px;
+    }
+
+    @media (max-width: 480px) {
+      width: 200px;
+    }
+  }
+
+  &__wrongPass {
+    color: $wrong-pass-color;
+  }
+}

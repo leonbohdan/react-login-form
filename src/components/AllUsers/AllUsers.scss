@@ -1,0 +1,22 @@
+@import '../../styles/utils';
+
+.allUsers {
+  display: flex;
+  justify-content: center;
+
+  &__section {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  &__card {
+    margin: 10px;
+    transition: transform 0.4s ease-in-out;
+
+    &:hover {
+      transform: scale(1.01);
+    }
+  }
+}
